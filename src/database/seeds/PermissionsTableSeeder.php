@@ -1,19 +1,15 @@
 <?php
 
-use Fos\Acl\Http\Models\Permission;
 use Illuminate\Database\Seeder;
 use Illuminate\Database\Eloquent\Model;
+use Fos\Acl\Http\Models\Permission;
 
 class PermissionsTableSeeder extends Seeder {
 
 	public function run() {
 		Model::unguard();
 
-		DB::statement('SET FOREIGN_KEY_CHECKS = 0');
-		DB::statement('TRUNCATE permissions');
-		DB::statement('SET FOREIGN_KEY_CHECKS = 1');
-
-		$route_list = \Fos\Helpers\RouteList::instance()->getRoutes()->groupBy('controller');
+		$route_list = \Fos\Acl\Http\Helpers\RouteList::instance()->getRoutes()->groupBy('controller');
 
 		foreach ($route_list as $controller) {
 			foreach ($controller as $method) {

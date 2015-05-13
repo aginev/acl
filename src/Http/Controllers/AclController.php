@@ -9,8 +9,6 @@ abstract class AclController extends BaseController {
 	use DispatchesCommands, ValidatesRequests;
 
 	public function __construct() {
-		parent::__construct();
-
 		$this->middleware('auth');
 		$this->middleware('acl');
 	}
