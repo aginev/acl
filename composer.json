@@ -1,0 +1,27 @@
+{
+    "name": "fos/acl",
+    "description": "Datagrid package for Laravel 5",
+    "homepage": "http://fos.com",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Atanas Ginev",
+            "email": "aginev@1stonlineitteam.co.uk"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Fos\\Acl\\" : "src"
+        }
+    },
+    "require": {
+        "php": ">=5.4.0",
+        "illuminate/foundation": "5.0.*",
+        "illuminate/contracts": "5.0.*",
+        "illuminate/database": "5.0.*",
+        "illuminate/routing": "5.0.*",
+        "illuminate/support": "5.0.*",
+        "illuminate/view": "5.0.*",
+		"illuminate/html": "5.*"
+    }
+}
