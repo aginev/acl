@@ -1,4 +1,4 @@
-# Datagrid For Laravel 5
+# ACL For Laravel 5
 Package that easily converts collection of models to a datagrid table.
 
 ## Features
