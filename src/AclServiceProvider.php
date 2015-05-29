@@ -1,5 +1,6 @@
 <?php namespace Fos\Acl;
 
+use Illuminate\Routing\Router;
 use Illuminate\Support\ServiceProvider;
 
 class AclServiceProvider extends ServiceProvider {
@@ -9,7 +10,7 @@ class AclServiceProvider extends ServiceProvider {
 	 *
 	 * @return void
 	 */
-	public function boot() {
+	public function boot(Router $router) {
 		// Including A Routes File From A Service Provider
 		include base_path('/vendor/Fos/Acl/src/Http/routes.php');
 
@@ -35,6 +36,9 @@ class AclServiceProvider extends ServiceProvider {
 		$this->publishes([
 			base_path('/vendor/Fos/Acl/src/database/seeds/') => base_path('/database/seeds')
 		], 'seeds');
+
+		// Define the ACL route middleware
+		$router->middleware('acl', 'Fos\Acl\Http\Middleware\Acl');
 	}
 
 	/**
