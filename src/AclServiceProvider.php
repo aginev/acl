@@ -1,6 +1,9 @@
 <?php namespace Fos\Acl;
 
+use Fos\Acl\Http\Helpers\AppNamespaceDetector;
+use Illuminate\Foundation\AliasLoader;
 use Illuminate\Routing\Router;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\ServiceProvider;
 
 class AclServiceProvider extends ServiceProvider {
@@ -19,13 +22,26 @@ class AclServiceProvider extends ServiceProvider {
 
 		$this->publishes([
 			base_path('/vendor/Fos/Acl/src/resources/views') => base_path('resources/views/vendor/acl'),
-		]);
+		], 'views');
+
+		// Publish assets
+		$this->publishes([
+			base_path('/vendor/Fos/Acl/src/public') => public_path('vendor/acl'),
+		], 'public');
 
 		// Tell Laravel where the translations for a given namespace are located.
 		$this->loadTranslationsFrom(base_path('/vendor/Fos/Acl/src/resources/lang'), 'acl');
 
+		$this->publishes([
+			base_path('/vendor/Fos/Acl/src/resources/lang') => base_path('resources/lang/vendor/acl'),
+		], 'lang');
+
 		// Merge config
 		$this->mergeConfigFrom(base_path('/vendor/Fos/Acl/src/config/acl.php'), 'acl');
+
+		$this->publishes([
+			base_path('/vendor/Fos/Acl/src/config/acl.php') => config_path('acl.php'),
+		], 'config');
 
 		// Publish migrations
 		$this->publishes([
@@ -47,6 +63,11 @@ class AclServiceProvider extends ServiceProvider {
 	 * @return void
 	 */
 	public function register() {
-		//
+		App::singleton('app_namespace_detector', function () {
+			return new AppNamespaceDetector();
+		});
+
+		$loader = AliasLoader::getInstance();
+		$loader->alias('AppNamespaceDetector', 'Fos\Acl\Facades\AppNamespaceDetector');
 	}
 }

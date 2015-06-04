@@ -2,8 +2,8 @@
 
 use Fos\Acl\Http\Models\Role;
 use Fos\Acl\Http\Models\Permission;
+use Fos\Acl\Http\Models\User;
 use Fos\Acl\Http\Requests\RoleRequest;
-use Illuminate\Support\Facades\Session;
 
 class RoleController extends AclController {
 
@@ -14,7 +14,7 @@ class RoleController extends AclController {
 	 */
 	public function index() {
 		return view('acl::role.index', [
-			'roles' => Role::all()
+			'roles' => Role::paginate(config('acl.per_page_results'))
 		]);
 	}
 
@@ -45,7 +45,7 @@ class RoleController extends AclController {
 				 ->attach($request->get('permission_id'));
 		}
 
-		return redirect('role')->with('success', 'Role created successfully.');;
+		return redirect('role')->with('success', 'Role created successfully.');
 	}
 
 	/**
@@ -104,11 +104,13 @@ class RoleController extends AclController {
 	 * @return Response
 	 */
 	public function destroy($id) {
-		// Get the first permission that is not this one that we are tring to delete
+		// Get the first permission that is not this one that we are trying to delete
 		$default_permission = Role::where('id', '<>', $id)->first();
 
 		if ($default_permission) {
-			User::where('role_id', '=', $id)
+			$user_model = \AppNamespaceDetector::getNamespace() . 'User';
+
+			$user_model::where('role_id', '=', $id)
 				->update(['role_id' => $default_permission->id]);
 
 			$role = Role::findOrFail($id);
