@@ -4,33 +4,33 @@
 <div class="container-fluid">
 	<div class="row">
 		<div class="col-md-12">
-			<div class="panel panel-default">
-				<div class="panel-heading position-relative">Create New Permission
-					<a href="{{ url('permission') }}" class="btn btn-danger btn-sm btn-absolute-right"><span class="glyphicon glyphicon-arrow-left"></span> Back</a>
+			<div class="panel panel-default fos-acl">
+				<div class="panel-heading position-relative">{!! trans('acl::permission.create.create_new_permission'); !!}
+					<a href="{{ url('permission') }}" class="btn btn-danger btn-sm btn-absolute-right"><span class="glyphicon glyphicon-arrow-left"></span> {!! trans('acl::permission.create.back'); !!}</a>
 				</div>
 				<div class="panel-body">
 
 					{!! Form::open(['action' => '\Fos\Acl\Http\Controllers\PermissionController@store', 'method' => 'POST', 'id' => 'role-form']) !!}
 
 					<div class="form-group">
-						<label for="controller">Controller</label>
-						{!! Form::text('controller', old('controller'), ['class' => 'form-control required', 'id' => 'controller', 'placeholder' => 'Controller']) !!}
+						<label for="controller">{!! trans('acl::permission.create.controller'); !!}</label>
+						{!! Form::text('controller', old('controller'), ['class' => 'form-control required', 'id' => 'controller', 'placeholder' => trans('acl::permission.create.controller_placeholder')]) !!}
 						{!! $errors->first('controller') !!}
 					</div>
 
 					<div class="form-group">
-						<label for="method">Method</label>
-						{!! Form::text('method', old('method'), ['class' => 'form-control required', 'id' => 'method', 'placeholder' => 'Method']) !!}
+						<label for="method">{!! trans('acl::permission.create.method'); !!}</label>
+						{!! Form::text('method', old('method'), ['class' => 'form-control required', 'id' => 'method', 'placeholder' => trans('acl::permission.create.method_placeholder')]) !!}
 						{!! $errors->first('method') !!}
 					</div>
 
 					<div class="form-group">
-						<label for="description">Description</label>
-						{!! Form::text('description', old('description'), ['class' => 'form-control', 'id' => 'description', 'placeholder' => 'Description']) !!}
+						<label for="description">{!! trans('acl::permission.create.description'); !!}</label>
+						{!! Form::text('description', old('description'), ['class' => 'form-control', 'id' => 'description', 'placeholder' => trans('acl::permission.create.description_placeholder')]) !!}
 						{!! $errors->first('description') !!}
 					</div>
 					
-					<button type="submit" class="btn btn-success">Create</button>
+					<button type="submit" class="btn btn-success">{!! trans('acl::permission.create.create'); !!}</button>
 
 					{!! Form::close() !!}
 

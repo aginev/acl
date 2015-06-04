@@ -4,32 +4,34 @@
 <div class="container-fluid">
 	<div class="row">
 		<div class="col-md-12">
-			<div class="panel panel-default">
-				<div class="panel-heading position-relative">Permissions
-					<a href="{{ url('permission/create') }}" class="btn btn-success btn-sm btn-absolute-right"><span class="glyphicon glyphicon-plus"></span> Add New Permission</a>
+			<div class="panel panel-default fos-acl">
+				<div class="panel-heading position-relative">{!! trans('acl::permission.index.permissions'); !!}
+					<a href="{{ url('permission/create') }}" class="btn btn-success btn-sm btn-absolute-right">
+						<span class="glyphicon glyphicon-plus"></span> {!! trans('acl::permission.index.add_new_permission'); !!}
+					</a>
 				</div>
 				<div class="panel-body">
 					<table class="table table-striped table-hover">
 						<thead>
 							<tr>
-								<th>Controller@method</th>
-								<th>Description</th>
-								<th style="width: 105px;">Action</th>
+								<th class="permission-controller">{!! trans('acl::permission.index.controller_method'); !!}</th>
+								<th class="permission-description">{!! trans('acl::permission.index.description'); !!}</th>
+								<th class="permission-action">{!! trans('acl::permission.index.action'); !!}</th>
 							</tr>
 						</thead>
 						<tbody>
 							@forelse($permissions as $permission)
 								<tr>
-									<td>{{ $permission->controller . '@' . $permission->method }}</td>
-									<td>{{ $permission->description }}</td>
-									<td>
-										<a href="{{ action('\Fos\Acl\Http\Controllers\PermissionController@edit', $permission->id) }}">Edit</a> /
-										<a href="{{ action('\Fos\Acl\Http\Controllers\PermissionController@destroy', $permission->id) }}" data-method="DELETE" data-confirm="Are you sure that you want to delete this permission?" class="text-danger">Delete</a>
+									<td class="permission-controller">{{ $permission->controller . '@' . $permission->method }}</td>
+									<td class="permission-description">{{ $permission->description }}</td>
+									<td class="permission-action">
+										<a href="{{ action('\Fos\Acl\Http\Controllers\PermissionController@edit', $permission->id) }}" title="{!! trans('acl::permission.index.edit'); !!}" class="btn btn-xs"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a>
+										<a href="{{ action('\Fos\Acl\Http\Controllers\PermissionController@destroy', $permission->id) }}" title="{!! trans('acl::permission.index.delete'); !!}" data-method="DELETE" class="btn btn-xs text-danger" data-confirm="{!! trans('acl::permission.index.delete_confirm'); !!}"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>
 									</td>
 								</tr>
 							@empty
 								<tr>
-									<td colspan="3">No permissions.</td>
+									<td colspan="3">{!! trans('acl::permission.index.no_permissions'); !!}</td>
 								</tr>
 							@endforelse
 						</tbody>
@@ -39,4 +41,7 @@
 		</div>
 	</div>
 </div>
+
+@include('acl::confirm')
+
 @endsection
