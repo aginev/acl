@@ -1,9 +1,31 @@
 <?php namespace Fos\Acl\Http\Controllers;
 
 use Fos\Acl\Http\Models\Permission;
-use Fos\Acl\Http\Requests\PermissionRequest;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Validator;
 
 class PermissionController extends AclController {
+
+	private $validation_rules = [];
+
+	public function __construct(Request $request) {
+		parent::__construct();
+
+		$this->validation_rules = [
+			'controller' => 'required',
+			'method'     => 'required',
+			'resource'   => 'required|unique:permissions,resource,' . $this->getPermissionId(),
+		];
+	}
+
+	private function getPermissionId() {
+		try {
+			return (int) Route::current()->parameters()['permission'];
+		} catch (\Exception $e) {
+			return null;
+		}
+	}
 
 	/**
 	 * Display a listing of the resource.
@@ -29,15 +51,22 @@ class PermissionController extends AclController {
 	/**
 	 * Store a newly created resource in storage.
 	 *
-	 * @param PermissionRequest $request
+	 * @param Request $request
 	 *
 	 * @return Response
 	 */
-	public function store(PermissionRequest $request) {
+	public function store(Request $request) {
 		$data = $request->all();
-		list($controller, $method) = explode('@', $data['resource']);
-		$data['controller'] = $controller;
-		$data['method'] = $method;
+		$data['resource'] = $data['controller'] . '@' . $data['method'];
+
+		$validator = Validator::make(
+			$data,
+			$this->validation_rules
+		);
+
+		if ($validator->fails()) {
+			return back()->withInput()->withErrors($validator);
+		}
 
 		Permission::create($data);
 
@@ -72,17 +101,24 @@ class PermissionController extends AclController {
 	 * Update the specified resource in storage.
 	 *
 	 * @param  int $id
-	 * @param PermissionRequest $request
+	 * @param Request $request
 	 *
 	 * @return Response
 	 */
-	public function update($id, PermissionRequest $request) {
+	public function update($id, Request $request) {
 		$permission = Permission::findOrFail($id);
 
 		$data = $request->all();
-		list($controller, $method) = explode('@', $data['resource']);
-		$data['controller'] = $controller;
-		$data['method'] = $method;
+		$data['resource'] = $data['controller'] . '@' . $data['method'];
+
+		$validator = Validator::make(
+			$data,
+			$this->validation_rules
+		);
+
+		if ($validator->fails()) {
+			return back()->withInput()->withErrors($validator);
+		}
 
 		$permission->update($data);
 

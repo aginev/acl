@@ -1,0 +1,23 @@
+.fos-acl .panel-heading {
+	position: relative;
+}
+
+.fos-acl .panel-heading .btn-absolute-right {
+	position: absolute;
+	top: 5px;
+	right: 5px;
+}
+
+.fos-acl .role-action,
+.fos-acl .permission-action {
+	width: 70px;
+	text-align: center;
+}
+
+.fos-acl .role-permissions ul {
+	list-style-type: none;
+}
+
+.fos-acl .role-permissions .controller {
+	font-weight: bold;
+}

@@ -17,8 +17,6 @@ class PermissionRequest extends Request {
 	 * @return array
 	 */
 	public function rules() {
-		return [
-			'resource' => 'required|unique:permissions,resource,' . Request::get('id', null),
-		];
+		return [];
 	}
 }

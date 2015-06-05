@@ -27,21 +27,43 @@
 
 					<div class="form-group">
 						<label>{!! trans('acl::role.create.role_permissions'); !!}</label>
-						<ul class="list-unstyled nasted-list-grid clearfix">
-						@forelse ($permissions as $controller => $methods)
-							<li>
-								<label><input type="checkbox" name="controller[]" value="{{ $controller }}" class="check-all" /> {!! $controller !!}</label>
 
-								<ul class="list-unstyled">
-									@foreach ($methods as $method)
-										<li><label><input type="checkbox" name="permission_id[{{ $method->id }}]" value="{{ $method->id }}" /> {!! $method->method !!}</label></li>
-									@endforeach
-								</ul>
-							</li>
-						@empty
-							<p class="text-danger">{!! trans('acl::role.create.no_permissions_found'); !!}</p>
-						@endforelse
-						</ul>
+						<div class="row role-permissions">
+							@forelse ($permissions as $controller => $methods)
+								<div class="col-md-4">
+									<label class="controller"><input type="checkbox" name="controller[]" value="{{ $controller }}" class="check-all" data-id="{{ md5($controller) }}" /> {!! $controller !!}</label>
+
+									<ul class="methods">
+										@foreach ($methods as $method)
+											<li class="method">
+												<label>
+													<input type="checkbox" name="permission_id[{{ $method->id }}]" value="{{ $method->id }}" data-controller="{{ md5($controller) }}"/> {!! $method->method !!}
+												</label>
+											</li>
+										@endforeach
+									</ul>
+								</div>
+							@empty
+								<p class="text-danger">{!! trans('acl::role.create.no_permissions_found'); !!}</p>
+							@endforelse
+						</div>
+
+
+						{{--<ul class="list-unstyled nasted-list-grid clearfix">--}}
+						{{--@forelse ($permissions as $controller => $methods)--}}
+							{{--<li>--}}
+								{{--<label><input type="checkbox" name="controller[]" value="{{ $controller }}" class="check-all" /> {!! $controller !!}</label>--}}
+
+								{{--<ul class="list-unstyled">--}}
+									{{--@foreach ($methods as $method)--}}
+										{{--<li><label><input type="checkbox" name="permission_id[{{ $method->id }}]" value="{{ $method->id }}" /> {!! $method->method !!}</label></li>--}}
+									{{--@endforeach--}}
+								{{--</ul>--}}
+							{{--</li>--}}
+						{{--@empty--}}
+							{{--<p class="text-danger">{!! trans('acl::role.create.no_permissions_found'); !!}</p>--}}
+						{{--@endforelse--}}
+						{{--</ul>--}}
 					</div>
 
 					<div class="clearfix"></div>

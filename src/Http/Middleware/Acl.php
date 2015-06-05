@@ -20,7 +20,12 @@ class Acl implements Middleware {
 
 		// If the specific route requires permissions
 		if ($permission) {
-			$user_permissions = Auth::user()->role->permissions->keyBy('resource');
+			// Get user permissions
+			try {
+				$user_permissions = Auth::user()->role->permissions->keyBy('resource');
+			} catch (\Exception $e) {
+				return abort(401, 'Unable to get user permissions!');
+			}
 
 			// And the user has permissions
 			if ( ! $user_permissions->has($resource)) {

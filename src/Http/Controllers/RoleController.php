@@ -105,20 +105,17 @@ class RoleController extends AclController {
 	 */
 	public function destroy($id) {
 		// Get the first permission that is not this one that we are trying to delete
-		$default_permission = Role::where('id', '<>', $id)->first();
+		$default_permission = Role::findOrFail(1);
 
-		if ($default_permission) {
-			$user_model = \AppNamespaceDetector::getNamespace() . 'User';
+		// Update all the users that have this role. Assign them the default role.
+		$user_model = \AppNamespaceDetector::getNamespace() . 'User';
+		$user_model::where('role_id', '=', $id)
+				   ->update(['role_id' => $default_permission->id]);
 
-			$user_model::where('role_id', '=', $id)
-				->update(['role_id' => $default_permission->id]);
+		// Delete the requested role.
+		$role = Role::findOrFail($id);
+		$role->delete();
 
-			$role = Role::findOrFail($id);
-			$role->delete();
-
-			return redirect('role')->with('success', 'Role deleted successfully.');
-		}
-
-		return back()->with('danger', 'Unable to set default role!');
+		return redirect('role')->with('success', 'Role deleted successfully.');
 	}
 }
