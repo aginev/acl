@@ -1,9 +1,16 @@
 1. Add the service provider 'Fos\Acl\AclServiceProvider',
 2. Publish assets php artisan vendor:publish --provider="Fos\Acl\AclServiceProvider" --tag="public"
-3.
-4.
-5.
-6.
+3. Migrate the database php artisan migrate --path="vendor/fos/acl/src/Database/Migrations"
+4. Seed the roles php artisan db:seed --class="Fos\Acl\Database\Seeds\RolesTableSeeder"
+5. Update user and set his role
+6. Add use \Fos\Acl\Http\Traits\User; at User model
+7. Add assets in layout
+	<link href="{{ asset('/vendor/acl/css/style.css') }}" rel="stylesheet">
+
+	<script src="{{ asset('/vendor/acl/js/script.js') }}"></script>
+	<script src="{{ asset('/vendor/acl/js/restful.js') }}"></script>
+8.
+9.
 
 
 

@@ -1,6 +1,8 @@
 <?php namespace Fos\Acl;
 
+use Illuminate\Foundation\AliasLoader;
 use Illuminate\Routing\Router;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\ServiceProvider;
 
 class AclServiceProvider extends ServiceProvider
@@ -66,6 +68,10 @@ class AclServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        App::register('Illuminate\Html\HtmlServiceProvider');
+        
+        $loader = AliasLoader::getInstance();
+        $loader->alias('Form', 'Illuminate\Html\FormFacade');
+        $loader->alias('HTML', 'Illuminate\Html\HtmlFacade');
     }
 }
