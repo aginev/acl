@@ -5,9 +5,14 @@
 <div class="container-fluid">
 	<div class="row">
 		<div class="col-md-12">
+
+			@include('acl::alert')
+
 			<div class="panel panel-default fos-acl">
 				<div class="panel-heading position-relative">{!! trans('acl::role.create.create_new_role'); !!}
-					<a href="{{ url('role') }}" class="btn btn-danger btn-sm btn-absolute-right"><span class="glyphicon glyphicon-arrow-left"></span> {!! trans('acl::role.create.back'); !!}</a>
+					<a href="{{ action('\Fos\Acl\Http\Controllers\RoleController@index') }}" class="btn btn-danger btn-sm btn-absolute-right">
+						<span class="glyphicon glyphicon-arrow-left"></span> {!! trans('acl::role.create.back'); !!}
+					</a>
 				</div>
 				<div class="panel-body">
 
@@ -37,7 +42,12 @@
 										@foreach ($methods as $method)
 											<li class="method">
 												<label>
-													<input type="checkbox" name="permission_id[{{ $method->id }}]" value="{{ $method->id }}" data-controller="{{ md5($controller) }}"/> {!! $method->method !!}
+													<input
+														type="checkbox"
+														name="permission_id[{{ $method->id }}]"
+														value="{{ $method->id }}"
+														data-controller="{{ md5($controller) }}"
+													/> {!! $method->method !!}
 												</label>
 											</li>
 										@endforeach
@@ -47,23 +57,6 @@
 								<p class="text-danger">{!! trans('acl::role.create.no_permissions_found'); !!}</p>
 							@endforelse
 						</div>
-
-
-						{{--<ul class="list-unstyled nasted-list-grid clearfix">--}}
-						{{--@forelse ($permissions as $controller => $methods)--}}
-							{{--<li>--}}
-								{{--<label><input type="checkbox" name="controller[]" value="{{ $controller }}" class="check-all" /> {!! $controller !!}</label>--}}
-
-								{{--<ul class="list-unstyled">--}}
-									{{--@foreach ($methods as $method)--}}
-										{{--<li><label><input type="checkbox" name="permission_id[{{ $method->id }}]" value="{{ $method->id }}" /> {!! $method->method !!}</label></li>--}}
-									{{--@endforeach--}}
-								{{--</ul>--}}
-							{{--</li>--}}
-						{{--@empty--}}
-							{{--<p class="text-danger">{!! trans('acl::role.create.no_permissions_found'); !!}</p>--}}
-						{{--@endforelse--}}
-						{{--</ul>--}}
 					</div>
 
 					<div class="clearfix"></div>

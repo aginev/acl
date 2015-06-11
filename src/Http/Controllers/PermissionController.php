@@ -5,137 +5,158 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Validator;
 
-class PermissionController extends AclController {
+class PermissionController extends AclController
+{
 
-	private $validation_rules = [];
+    /**
+     * Display a listing of the resource.
+     *
+     * @return Response
+     */
+    public function index()
+    {
+        return view('acl::permission.index', [
+            'permissions' => Permission::paginate(config('acl.per_page_results'))
+        ]);
+    }
 
-	public function __construct(Request $request) {
-		parent::__construct();
+    /**
+     * Show the form for creating a new resource.
+     * @return Response
+     * @internal param PermissionRequest $request
+     *
+     */
+    public function create()
+    {
+        return view('acl::permission.create', []);
+    }
 
-		$this->validation_rules = [
-			'controller' => 'required',
-			'method'     => 'required',
-			'resource'   => 'required|unique:permissions,resource,' . $this->getPermissionId(),
-		];
-	}
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param Request $request
+     *
+     * @return Response
+     */
+    public function store(Request $request)
+    {
+        $data = $request->all();
+        $data['resource'] = $data['controller'] . '@' . $data['method'];
 
-	private function getPermissionId() {
-		try {
-			return (int) Route::current()->parameters()['permission'];
-		} catch (\Exception $e) {
-			return null;
-		}
-	}
+        $validator = Validator::make(
+            $data,
+            $this->getValidationRules()
+        );
 
-	/**
-	 * Display a listing of the resource.
-	 *
-	 * @return Response
-	 */
-	public function index() {
-		return view('acl::permission.index', [
-			'permissions' => Permission::all()
-		]);
-	}
+        if ($validator->fails()) {
+            return back()->withInput()->withErrors($validator);
+        }
 
-	/**
-	 * Show the form for creating a new resource.
-	 * @return Response
-	 * @internal param PermissionRequest $request
-	 *
-	 */
-	public function create() {
-		return view('acl::permission.create', []);
-	}
+        Permission::create($data);
 
-	/**
-	 * Store a newly created resource in storage.
-	 *
-	 * @param Request $request
-	 *
-	 * @return Response
-	 */
-	public function store(Request $request) {
-		$data = $request->all();
-		$data['resource'] = $data['controller'] . '@' . $data['method'];
+        return redirect()->action('\Fos\Acl\Http\Controllers\PermissionController@index')
+                         ->with('success', trans('acl::permission.create.created'));
+    }
 
-		$validator = Validator::make(
-			$data,
-			$this->validation_rules
-		);
+    /**
+     * Display the specified resource.
+     *
+     * @param  int $id
+     *
+     * @return Response
+     */
+    public function show($id)
+    {
+        return view('acl::permission.show');
+    }
 
-		if ($validator->fails()) {
-			return back()->withInput()->withErrors($validator);
-		}
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int $id
+     *
+     * @return Response
+     */
+    public function edit($id)
+    {
+        $permission = Permission::findOrFail($id);
 
-		Permission::create($data);
+        return view('acl::permission.edit', [
+            'permission' => $permission
+        ]);
+    }
 
-		return redirect('permission')->with('success', 'Permission created successfully.');
-	}
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  int $id
+     * @param Request $request
+     *
+     * @return Response
+     */
+    public function update($id, Request $request)
+    {
+        $permission = Permission::findOrFail($id);
 
-	/**
-	 * Display the specified resource.
-	 *
-	 * @param  int $id
-	 * @return Response
-	 */
-	public function show($id) {
-		return view('acl::permission.show');
-	}
+        $data = $request->all();
+        $data['resource'] = $data['controller'] . '@' . $data['method'];
 
-	/**
-	 * Show the form for editing the specified resource.
-	 *
-	 * @param  int $id
-	 * @return Response
-	 */
-	public function edit($id) {
-		$permission = Permission::findOrFail($id);
+        $validator = Validator::make(
+            $data,
+            $this->getValidationRules()
+        );
 
-		return view('acl::permission.edit', [
-			'permission' => $permission
-		]);
-	}
+        if ($validator->fails()) {
+            return back()->withErrors($validator->messages());
+        }
 
-	/**
-	 * Update the specified resource in storage.
-	 *
-	 * @param  int $id
-	 * @param Request $request
-	 *
-	 * @return Response
-	 */
-	public function update($id, Request $request) {
-		$permission = Permission::findOrFail($id);
+        $permission->update($data);
 
-		$data = $request->all();
-		$data['resource'] = $data['controller'] . '@' . $data['method'];
+        return redirect()->action('\Fos\Acl\Http\Controllers\PermissionController@index')
+                         ->with('success', trans('acl::permission.edit.updated'));
+    }
 
-		$validator = Validator::make(
-			$data,
-			$this->validation_rules
-		);
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int $id
+     *
+     * @return Response
+     */
+    public function destroy($id)
+    {
+        $permission = Permission::findOrFail($id);
+        $permission->delete();
 
-		if ($validator->fails()) {
-			return back()->withInput()->withErrors($validator);
-		}
+        return redirect()->action('\Fos\Acl\Http\Controllers\PermissionController@index')
+                         ->with('success', trans('acl::permission.destroy.deleted'));
+    }
 
-		$permission->update($data);
+    /**
+     * Validation rules
+     *
+     * @return array
+     */
+    private function getValidationRules()
+    {
+        return [
+            'controller' => 'required',
+            'method'     => 'required',
+            'resource'   => 'required|unique:permissions,resource,' . $this->getPermissionId(),
+        ];
+    }
 
-		return redirect('permission')->with('success', 'Permission updated successfully.');
-	}
-
-	/**
-	 * Remove the specified resource from storage.
-	 *
-	 * @param  int $id
-	 * @return Response
-	 */
-	public function destroy($id) {
-		$permission = Permission::findOrFail($id);
-		$permission->delete();
-
-		return redirect('permission')->with('success', 'Permission deleted successfully.');;
-	}
-
+    /**
+     * Get permission id or null
+     *
+     * @return int|null
+     */
+    private function getPermissionId()
+    {
+        try {
+            return (int)Route::current()->parameters()['permission'];
+        } catch (\Exception $e) {
+            return null;
+        }
+    }
 }

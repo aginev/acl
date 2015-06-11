@@ -22,6 +22,8 @@ return [
 		'description'             => 'Description',
 		'description_placeholder' => 'Description',
 		'create'                  => 'Create',
+
+		'created'                 => 'Permission created successfully.',
 	],
 	'edit'   => [
 		'update_permission'       => 'Update Permission',
@@ -33,5 +35,10 @@ return [
 		'description'             => 'Description',
 		'description_placeholder' => 'Description',
 		'update'                  => 'Update',
+
+		'updated'                 => 'Permission updated successfully.',
 	],
+	'destroy' => [
+		'deleted' => 'Permission deleted successfully.',
+	]
 ];

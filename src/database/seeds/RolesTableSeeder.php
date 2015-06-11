@@ -1,26 +1,34 @@
 <?php
 
-use Fos\Acl\Http\Models\Permission;
+namespace Fos\Acl\Database\Seeds;
+
+use Fos\Acl\Commands\SetPermissions;
 use Fos\Acl\Http\Models\Role;
 use Illuminate\Database\Seeder;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Bus\DispatchesCommands;
 
-class RolesTableSeeder extends Seeder {
+class RolesTableSeeder extends Seeder
+{
+    use DispatchesCommands;
 
-	public function run() {
-		Model::unguard();
+    public function run()
+    {
+        Model::unguard();
 
-		Role::create([
-			'role_title' => 'No Permissions',
-			'role_description' => 'No Permissions'
-		]);
+        // Create no permissions role
+        Role::create([
+            'role_title' => 'No Permissions',
+            'role_description' => 'No Permissions'
+        ]);
 
-		$admin = Role::create([
-			'role_title' => 'Admin',
-			'role_description' => 'All Permissions'
-		]);
+        // Create all permissions role
+        $admin = Role::create([
+            'role_title' => 'Admin',
+            'role_description' => 'All Permissions'
+        ]);
 
-		$permissions = Permission::all();
-		$admin->permissions()->attach($permissions->lists('id'));
-	}
+        // Assign all permission to the admin
+        $this->dispatch(new SetPermissions([$admin->id]));
+    }
 }

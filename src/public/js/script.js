@@ -6,8 +6,6 @@ $('.controller input:checkbox').on('click', function() {
 	if ($(this).is(":checked")) {
 		methods.prop('checked', true);
 	}
-
-	console.log(wrapper, methods);
 });
 
 $('.methods input:checkbox').on('click', function() {
@@ -15,6 +13,18 @@ $('.methods input:checkbox').on('click', function() {
 	var controller = $('[data-id="' + hash + '"]');
 	var all = $('input[data-controller="' + hash + '"]').length;
 	var all_checked = $('input[data-controller="' + hash + '"]:checked').length;
+
+	if (all != all_checked) {
+		controller.prop('checked', false);
+	} else {
+		controller.prop('checked', true);
+	}
+});
+
+$.each($('.methods'), function( index, value ) {
+	var controller = $(this).parent().find('input.check-all');
+	var all = $('input:checkbox', $(this)).length;
+	var all_checked = $('input:checkbox:checked', $(this)).length;
 
 	if (all != all_checked) {
 		controller.prop('checked', false);

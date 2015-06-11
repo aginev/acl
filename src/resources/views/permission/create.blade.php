@@ -4,9 +4,12 @@
 <div class="container-fluid">
 	<div class="row">
 		<div class="col-md-12">
+
+			@include('acl::alert')
+
 			<div class="panel panel-default fos-acl">
 				<div class="panel-heading position-relative">{!! trans('acl::permission.create.create_new_permission'); !!}
-					<a href="{{ url('permission') }}" class="btn btn-danger btn-sm btn-absolute-right"><span class="glyphicon glyphicon-arrow-left"></span> {!! trans('acl::permission.create.back'); !!}</a>
+					<a href="{{ action('\Fos\Acl\Http\Controllers\PermissionController@index') }}" class="btn btn-danger btn-sm btn-absolute-right"><span class="glyphicon glyphicon-arrow-left"></span> {!! trans('acl::permission.create.back'); !!}</a>
 				</div>
 				<div class="panel-body">
 

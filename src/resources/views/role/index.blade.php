@@ -4,9 +4,12 @@
 <div class="container-fluid">
 	<div class="row">
 		<div class="col-md-12">
+
+			@include('acl::alert')
+
 			<div class="panel panel-default fos-acl">
 				<div class="panel-heading position-relative">{!! trans('acl::role.index.roles'); !!}
-					<a href="{{ url('role/create') }}" class="btn btn-success btn-sm btn-absolute-right">
+					<a href="{{ action('\Fos\Acl\Http\Controllers\RoleController@create') }}" class="btn btn-success btn-sm btn-absolute-right">
 						<span class="glyphicon glyphicon-plus"></span> {!! trans('acl::role.index.add_new_role'); !!}
 					</a>
 				</div>

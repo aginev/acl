@@ -4,9 +4,11 @@
 <div class="container-fluid">
 	<div class="row">
 		<div class="col-md-12">
+			@include('acl::alert')
+
 			<div class="panel panel-default fos-acl">
 				<div class="panel-heading position-relative">{!! trans('acl::permission.index.permissions'); !!}
-					<a href="{{ url('permission/create') }}" class="btn btn-success btn-sm btn-absolute-right">
+					<a href="{{ action('\Fos\Acl\Http\Controllers\PermissionController@create') }}" class="btn btn-success btn-sm btn-absolute-right">
 						<span class="glyphicon glyphicon-plus"></span> {!! trans('acl::permission.index.add_new_permission'); !!}
 					</a>
 				</div>
@@ -36,6 +38,10 @@
 							@endforelse
 						</tbody>
 					</table>
+
+					<div class="text-center">
+						<?php echo $permissions->render(); ?>
+					</div>
 				</div>
 			</div>
 		</div>

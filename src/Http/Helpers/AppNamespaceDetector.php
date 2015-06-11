@@ -2,28 +2,29 @@
 
 use Illuminate\Console\AppNamespaceDetectorTrait;
 
-class AppNamespaceDetector {
+class AppNamespaceDetector
+{
+    use AppNamespaceDetectorTrait;
 
-	use AppNamespaceDetectorTrait;
+    /**
+     * Store application namespace
+     *
+     * @var string
+     */
+    public static $app_namespace;
 
-	/**
-	 * Store application namespace
-	 *
-	 * @var string
-	 */
-	public static $app_namespace;
+    /**
+     * Get application namespace
+     *
+     * @return string
+     */
+    public function getNamespace()
+    {
+        // Lazy loading
+        if (!self::$app_namespace) {
+            self::$app_namespace = $this->getAppNamespace();
+        }
 
-	/**
-	 * Get application namespace
-	 *
-	 * @return string
-	 */
-	public function getNamespace() {
-		// Lazy loading
-		if (!self::$app_namespace) {
-			self::$app_namespace = $this->getAppNamespace();
-		}
-
-		return self::$app_namespace;
-	}
+        return self::$app_namespace;
+    }
 }

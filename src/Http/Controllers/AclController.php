@@ -5,14 +5,21 @@ use Illuminate\Foundation\Bus\DispatchesCommands;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Support\Facades\View;
 
-abstract class AclController extends BaseController {
+abstract class AclController extends BaseController
+{
+    use DispatchesCommands, ValidatesRequests;
 
-	use DispatchesCommands, ValidatesRequests;
+    public function __construct()
+    {
+        $this->middleware('auth');
+        $this->middleware('acl');
 
-	public function __construct() {
-		$this->middleware('auth');
-		$this->middleware('acl');
-
-		View::shared('errors')->setFormat('<label class="error text-danger">:message</label>');
-	}
+        $validation_errors_format = config('acl.validation_errors_format');
+        if ($validation_errors_format) {
+            $shared = View::shared('errors');
+            if ($shared) {
+                $shared->setFormat($validation_errors_format);
+            }
+        }
+    }
 }
