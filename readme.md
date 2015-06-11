@@ -1,3 +1,27 @@
+1. Add the service provider 'Fos\Acl\AclServiceProvider',
+2. Publish assets php artisan vendor:publish --provider="Fos\Acl\AclServiceProvider" --tag="public"
+3.
+4.
+5.
+6.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 # ACL For Laravel 5
 Package that easily converts collection of models to a datagrid table.
 
