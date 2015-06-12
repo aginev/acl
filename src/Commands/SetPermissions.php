@@ -57,8 +57,14 @@ class SetPermissions extends Command implements SelfHandling
                 continue;
             }
 
+            // Skip some methods
+            $data = $this->getPermissionData($route);
+            if ($data['method'] == 'missingMethod') {
+                continue;
+            }
+
             // Add new permission
-            $permissions->push(Permission::create($this->getPermissionData($route)));
+            $permissions->push(Permission::create($data));
         }
 
         $this->assignPermissions($permissions);
