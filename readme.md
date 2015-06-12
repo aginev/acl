@@ -1,4 +1,4 @@
-s# ACL For Laravel 5
+## ACL For Laravel 5
 Access control list implementation form Laravel 5. Gives you roles and permissions for build in Laravel 5 Auth.
 
 ## Features
