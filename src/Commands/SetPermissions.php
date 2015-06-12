@@ -98,7 +98,7 @@ class SetPermissions extends Command implements SelfHandling
         $routes = RouteList::instance()->getRoutes();
 
         foreach ($routes as $route) {
-            if ($route['middleware']->has('acl')) {
+            if ($route['middleware']->has('acl') || $route['middleware']->search('acl', true) !== false) {
                 $protected->put($route['resource'], new Collection($route));
             }
         }
