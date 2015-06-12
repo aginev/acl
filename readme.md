@@ -139,13 +139,13 @@ only if your controllers are extending ACL base controller (\Fos\Acl\Http\Contro
 ```
 
 And the most important thing... you want your controller to be ACL dependent. There two options for this.
-1. Add ACL middleware at your controller constructor.
+1.Add ACL middleware at your controller constructor.
 
 ```php
 $this->middleware('acl');
 ```
 
-2. Route group at routes.php
+2.Route group at routes.php
 
 ```php
 Route::group(['middleware' => 'acl'], function () {
