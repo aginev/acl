@@ -107,6 +107,7 @@ use \Fos\Acl\Http\Traits\User;
 ```
 
 At this point you have ACL up and running. Access roles and permissions CRUD at:
+
 /admin/role
 /admin/permission
 
