@@ -1,5 +1,6 @@
 <?php namespace Fos\Acl;
 
+use Fos\Acl\Console\AclFill;
 use Illuminate\Foundation\AliasLoader;
 use Illuminate\Routing\Router;
 use Illuminate\Support\Facades\App;
@@ -68,10 +69,18 @@ class AclServiceProvider extends ServiceProvider
      */
     public function register()
     {
+        // Register the HtmlServiceProvider
         App::register('Illuminate\Html\HtmlServiceProvider');
-        
+
+        // Add aliases to Form/Html Facade
         $loader = AliasLoader::getInstance();
         $loader->alias('Form', 'Illuminate\Html\FormFacade');
         $loader->alias('HTML', 'Illuminate\Html\HtmlFacade');
+
+        // Register the acl:fill-permissions command
+        $this->app['acl:fill-permissions'] = $this->app->share(function($app) {
+            return new AclFill();
+        });
+        $this->commands('acl:fill-permissions');
     }
 }
