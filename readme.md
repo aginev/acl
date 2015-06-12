@@ -109,6 +109,7 @@ use \Fos\Acl\Http\Traits\User;
 At this point you have ACL up and running. Access roles and permissions CRUD at:
 
 /admin/role
+
 /admin/permission
 
 Not happy with the route prefix? Publish the package config and edit routes_prefix value for your own or leave it blank for no prefix.
