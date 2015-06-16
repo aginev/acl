@@ -32,14 +32,14 @@ Require package at your composer.json file like so
 ```json
 {
     "require": {
-        "aginev/acl": "1.0.*"
+        "aginev/acl": "1.1.*"
     }
 }
 ```
 
 Or in terminal
 ```sh
-composer require aginev/acl:1.0.*
+composer require aginev/acl:1.1.*
 ```
 
 Tell composer to update your dependencies
@@ -49,7 +49,7 @@ composer update
 
 Add Service Provider to your config/app.php like so
 ```php
-'Aginev\Acl\AclServiceProvider',
+Aginev\Acl\AclServiceProvider::class,
 ```
 
 Publish package assets
