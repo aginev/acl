@@ -1,10 +1,10 @@
 <?php
 
-namespace Fos\Acl\Console;
+namespace Aginev\Acl\Console;
 
-use Fos\Acl\Commands\SetPermissions;
-use Fos\Acl\Http\Helpers\RouteList;
-use Fos\Acl\Http\Models\Permission;
+use Aginev\Acl\Commands\SetPermissions;
+use Aginev\Acl\Http\Helpers\RouteList;
+use Aginev\Acl\Http\Models\Permission;
 use Illuminate\Console\Command;
 use Illuminate\Foundation\Bus\DispatchesCommands;
 use Illuminate\Support\Collection;

@@ -1,4 +1,4 @@
-<?php namespace Fos\Acl\Http\Controllers;
+<?php namespace Aginev\Acl\Http\Controllers;
 
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Foundation\Bus\DispatchesCommands;

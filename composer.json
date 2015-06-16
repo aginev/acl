@@ -1,17 +1,17 @@
 {
-    "name": "fos/acl",
+    "name": "aginev/acl",
     "description": "Datagrid package for Laravel 5",
-    "homepage": "http://fos.com",
+    "homepage": "http://aginev.com",
     "license": "MIT",
     "authors": [
         {
             "name": "Atanas Ginev",
-            "email": "aginev@1stonlineitteam.co.uk"
+            "email": "naskospam@gmail.com"
         }
     ],
     "autoload": {
         "psr-4": {
-            "Fos\\Acl\\" : "src"
+            "Aginev\\Acl\\" : "src"
         }
     },
     "require": {

@@ -9,13 +9,13 @@
 
 				<div class="panel panel-default fos-acl">
 					<div class="panel-heading position-relative">{!! trans('acl::role.edit.update_role'); !!}
-						<a href="{{ action('\Fos\Acl\Http\Controllers\RoleController@index') }}" class="btn btn-danger btn-sm btn-absolute-right">
+						<a href="{{ action('\Aginev\Acl\Http\Controllers\RoleController@index') }}" class="btn btn-danger btn-sm btn-absolute-right">
 							<span class="glyphicon glyphicon-arrow-left"></span> {!! trans('acl::role.edit.back'); !!}
 						</a>
 					</div>
 					<div class="panel-body">
 
-						{!! Form::open(['action' => ['\Fos\Acl\Http\Controllers\RoleController@update', $role->id], 'method' => 'PATCH', 'id' => 'role-form']) !!}
+						{!! Form::open(['action' => ['\Aginev\Acl\Http\Controllers\RoleController@update', $role->id], 'method' => 'PATCH', 'id' => 'role-form']) !!}
 
 						<div class="form-group">
 							<label for="role_title">{!! trans('acl::role.edit.role'); !!}</label>

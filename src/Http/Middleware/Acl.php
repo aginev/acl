@@ -1,7 +1,7 @@
-<?php namespace Fos\Acl\Http\Middleware;
+<?php namespace Aginev\Acl\Http\Middleware;
 
 use Closure;
-use Fos\Acl\Http\Models\Permission;
+use Aginev\Acl\Http\Models\Permission;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Contracts\Routing\Middleware;

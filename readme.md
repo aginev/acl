@@ -54,12 +54,12 @@ composer update
 
 Add Service Provider to your config/app.php like so
 ```php
-'Fos\Acl\AclServiceProvider',
+'Aginev\Acl\AclServiceProvider',
 ```
 
 Publish package assets
 ```sh
-php artisan vendor:publish --provider="Fos\Acl\AclServiceProvider" --tag="public"
+php artisan vendor:publish --provider="Aginev\Acl\AclServiceProvider" --tag="public"
 ```
 
 Add package CSS to your layout
@@ -96,14 +96,14 @@ considered as a default role. You will be not able to delete this role. When del
 role will be assigned to No Permissions role. By default the seeder will add all resources requesting ACL and will 
 assign them to Admin role.
 ```sh
-php artisan db:seed --class="Fos\Acl\Database\Seeds\RolesTableSeeder"
+php artisan db:seed --class="Aginev\Acl\Database\Seeds\RolesTableSeeder"
 ```
 
 Modify one or more of your users to have a valid role_id. By default the added role_id foreign key will have a value of NULL
 
 Add ACL user trait to your User model. It will add definition for the relation between roles and users table;
 ```php
-use \Fos\Acl\Http\Traits\User;
+use \Aginev\Acl\Http\Traits\User;
 ```
 
 At this point you have ACL up and running. Access roles and permissions CRUD at:
@@ -114,7 +114,7 @@ At this point you have ACL up and running. Access roles and permissions CRUD at:
 
 Not happy with the route prefix? Publish the package config and edit routes_prefix value for your own or leave it blank for no prefix.
 ```sh
-php artisan vendor:publish --provider="Fos\Acl\AclServiceProvider" --tag="config"
+php artisan vendor:publish --provider="Aginev\Acl\AclServiceProvider" --tag="config"
 ```
 
 Edit route prefix
@@ -134,7 +134,7 @@ Package has a pagination in index views. If you need more items per page, edit p
 ```
 
 To define custom error messages format, edit validation_errors_format value at the config. This format will be applied 
-only if your controllers are extending ACL base controller (\Fos\Acl\Http\Controllers\AclController). 
+only if your controllers are extending ACL base controller (\Aginev\Acl\Http\Controllers\AclController). 
 ```php
 // validation errors format. Set to blank for default
 'validation_errors_format' => '<label class="error text-danger">:message</label>',
@@ -175,19 +175,19 @@ php artisan acl:fill-permissions --assign-to-roles=1,2
 
 To modify default views you need to publish them
 ```sh
-php artisan vendor:publish --provider="Fos\Acl\AclServiceProvider" --tag="views"
+php artisan vendor:publish --provider="Aginev\Acl\AclServiceProvider" --tag="views"
 ```
 
 ### Other
 
 Publish migrations
 ```sh
-php artisan vendor:publish --provider="Fos\Acl\AclServiceProvider" --tag="migrations"
+php artisan vendor:publish --provider="Aginev\Acl\AclServiceProvider" --tag="migrations"
 ```
 
 Publish seeds
 ```sh
-php artisan vendor:publish --provider="Fos\Acl\AclServiceProvider" --tag="seeds"
+php artisan vendor:publish --provider="Aginev\Acl\AclServiceProvider" --tag="seeds"
 ```
 
 ## License

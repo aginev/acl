@@ -8,7 +8,7 @@
 
 			<div class="panel panel-default fos-acl">
 				<div class="panel-heading position-relative">{!! trans('acl::permission.index.permissions'); !!}
-					<a href="{{ action('\Fos\Acl\Http\Controllers\PermissionController@create') }}" class="btn btn-success btn-sm btn-absolute-right">
+					<a href="{{ action('\Aginev\Acl\Http\Controllers\PermissionController@create') }}" class="btn btn-success btn-sm btn-absolute-right">
 						<span class="glyphicon glyphicon-plus"></span> {!! trans('acl::permission.index.add_new_permission'); !!}
 					</a>
 				</div>
@@ -27,8 +27,8 @@
 									<td class="permission-controller">{{ $permission->controller . '@' . $permission->method }}</td>
 									<td class="permission-description">{{ $permission->description }}</td>
 									<td class="permission-action">
-										<a href="{{ action('\Fos\Acl\Http\Controllers\PermissionController@edit', $permission->id) }}" title="{!! trans('acl::permission.index.edit'); !!}" class="btn btn-xs"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a>
-										<a href="{{ action('\Fos\Acl\Http\Controllers\PermissionController@destroy', $permission->id) }}" title="{!! trans('acl::permission.index.delete'); !!}" data-method="DELETE" class="btn btn-xs text-danger" data-confirm="{!! trans('acl::permission.index.delete_confirm'); !!}"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>
+										<a href="{{ action('\Aginev\Acl\Http\Controllers\PermissionController@edit', $permission->id) }}" title="{!! trans('acl::permission.index.edit'); !!}" class="btn btn-xs"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a>
+										<a href="{{ action('\Aginev\Acl\Http\Controllers\PermissionController@destroy', $permission->id) }}" title="{!! trans('acl::permission.index.delete'); !!}" data-method="DELETE" class="btn btn-xs text-danger" data-confirm="{!! trans('acl::permission.index.delete_confirm'); !!}"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>
 									</td>
 								</tr>
 							@empty

@@ -1,6 +1,6 @@
-<?php namespace Fos\Acl\Http\Controllers;
+<?php namespace Aginev\Acl\Http\Controllers;
 
-use Fos\Acl\Http\Models\Permission;
+use Aginev\Acl\Http\Models\Permission;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Validator;
@@ -54,7 +54,7 @@ class PermissionController extends AclController
 
         Permission::create($data);
 
-        return redirect()->action('\Fos\Acl\Http\Controllers\PermissionController@index')
+        return redirect()->action('\Aginev\Acl\Http\Controllers\PermissionController@index')
                          ->with('success', trans('acl::permission.create.created'));
     }
 
@@ -112,7 +112,7 @@ class PermissionController extends AclController
 
         $permission->update($data);
 
-        return redirect()->action('\Fos\Acl\Http\Controllers\PermissionController@index')
+        return redirect()->action('\Aginev\Acl\Http\Controllers\PermissionController@index')
                          ->with('success', trans('acl::permission.edit.updated'));
     }
 
@@ -128,7 +128,7 @@ class PermissionController extends AclController
         $permission = Permission::findOrFail($id);
         $permission->delete();
 
-        return redirect()->action('\Fos\Acl\Http\Controllers\PermissionController@index')
+        return redirect()->action('\Aginev\Acl\Http\Controllers\PermissionController@index')
                          ->with('success', trans('acl::permission.destroy.deleted'));
     }
 

@@ -1,4 +1,4 @@
-<?php namespace Fos\Acl\Http\Helpers;
+<?php namespace Aginev\Acl\Http\Helpers;
 
 use Illuminate\Routing\Route;
 use Illuminate\Support\Collection;

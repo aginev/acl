@@ -1,9 +1,9 @@
 <?php
 
-namespace Fos\Acl\Database\Seeds;
+namespace Aginev\Acl\Database\Seeds;
 
-use Fos\Acl\Commands\SetPermissions;
-use Fos\Acl\Http\Models\Role;
+use Aginev\Acl\Commands\SetPermissions;
+use Aginev\Acl\Http\Models\Role;
 use Illuminate\Database\Seeder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Bus\DispatchesCommands;

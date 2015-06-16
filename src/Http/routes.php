@@ -7,6 +7,6 @@
 */
 
 Route::group(['prefix' => config('acl.routes_prefix')], function () {
-    Route::resource('permission', 'Fos\Acl\Http\Controllers\PermissionController');
-    Route::resource('role', 'Fos\Acl\Http\Controllers\RoleController');
+    Route::resource('permission', 'Aginev\Acl\Http\Controllers\PermissionController');
+    Route::resource('role', 'Aginev\Acl\Http\Controllers\RoleController');
 });

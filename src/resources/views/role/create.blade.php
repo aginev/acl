@@ -10,13 +10,13 @@
 
 			<div class="panel panel-default fos-acl">
 				<div class="panel-heading position-relative">{!! trans('acl::role.create.create_new_role'); !!}
-					<a href="{{ action('\Fos\Acl\Http\Controllers\RoleController@index') }}" class="btn btn-danger btn-sm btn-absolute-right">
+					<a href="{{ action('\Aginev\Acl\Http\Controllers\RoleController@index') }}" class="btn btn-danger btn-sm btn-absolute-right">
 						<span class="glyphicon glyphicon-arrow-left"></span> {!! trans('acl::role.create.back'); !!}
 					</a>
 				</div>
 				<div class="panel-body">
 
-					{!! Form::open(['action' => '\Fos\Acl\Http\Controllers\RoleController@store', 'method' => 'POST', 'id' => 'role-form']) !!}
+					{!! Form::open(['action' => '\Aginev\Acl\Http\Controllers\RoleController@store', 'method' => 'POST', 'id' => 'role-form']) !!}
 
 					<div class="form-group">
 						<label for="role_title">{!! trans('acl::role.create.role'); !!}</label>

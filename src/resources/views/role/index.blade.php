@@ -9,7 +9,7 @@
 
 			<div class="panel panel-default fos-acl">
 				<div class="panel-heading position-relative">{!! trans('acl::role.index.roles'); !!}
-					<a href="{{ action('\Fos\Acl\Http\Controllers\RoleController@create') }}" class="btn btn-success btn-sm btn-absolute-right">
+					<a href="{{ action('\Aginev\Acl\Http\Controllers\RoleController@create') }}" class="btn btn-success btn-sm btn-absolute-right">
 						<span class="glyphicon glyphicon-plus"></span> {!! trans('acl::role.index.add_new_role'); !!}
 					</a>
 				</div>
@@ -28,9 +28,9 @@
 									<td class="role-title">{{ $role->role_title }}</td>
 									<td class="role-description">{{ $role->role_description }}</td>
 									<td class="role-action">
-										<a href="{{ action('\Fos\Acl\Http\Controllers\RoleController@edit', $role->id) }}" title="{!! trans('acl::role.index.edit'); !!}" class="btn btn-xs"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a>
+										<a href="{{ action('\Aginev\Acl\Http\Controllers\RoleController@edit', $role->id) }}" title="{!! trans('acl::role.index.edit'); !!}" class="btn btn-xs"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a>
 										@if ($role->id != 1)
-										<a href="{{ action('\Fos\Acl\Http\Controllers\RoleController@destroy', $role->id) }}" title="{!! trans('acl::role.index.delete'); !!}" data-method="DELETE" class="btn btn-xs text-danger" data-confirm="{!! trans('acl::role.index.delete_confirm'); !!}"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>
+										<a href="{{ action('\Aginev\Acl\Http\Controllers\RoleController@destroy', $role->id) }}" title="{!! trans('acl::role.index.delete'); !!}" data-method="DELETE" class="btn btn-xs text-danger" data-confirm="{!! trans('acl::role.index.delete_confirm'); !!}"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>
 										@endif
 									</td>
 								</tr>

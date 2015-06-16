@@ -1,11 +1,11 @@
 <?php
 
-namespace Fos\Acl\Commands;
+namespace Aginev\Acl\Commands;
 
 use App\Commands\Command;
-use Fos\Acl\Http\Helpers\RouteList;
-use Fos\Acl\Http\Models\Permission;
-use Fos\Acl\Http\Models\Role;
+use Aginev\Acl\Http\Helpers\RouteList;
+use Aginev\Acl\Http\Models\Permission;
+use Aginev\Acl\Http\Models\Role;
 use Illuminate\Contracts\Bus\SelfHandling;
 use Illuminate\Support\Collection;
 

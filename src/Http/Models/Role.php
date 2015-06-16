@@ -1,4 +1,4 @@
-<?php namespace Fos\Acl\Http\Models;
+<?php namespace Aginev\Acl\Http\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -20,6 +20,6 @@ class Role extends Model
 
     public function permissions()
     {
-        return $this->belongsToMany('\Fos\Acl\Http\Models\Permission');
+        return $this->belongsToMany('\Aginev\Acl\Http\Models\Permission');
     }
 }

@@ -9,11 +9,11 @@
 
 				<div class="panel panel-default fos-acl">
 					<div class="panel-heading position-relative">{!! trans('acl::permission.edit.update_permission'); !!}
-						<a href="{{ action('\Fos\Acl\Http\Controllers\PermissionController@index') }}" class="btn btn-danger btn-sm btn-absolute-right"><span class="glyphicon glyphicon-arrow-left"></span> {!! trans('acl::permission.edit.back') !!}</a>
+						<a href="{{ action('\Aginev\Acl\Http\Controllers\PermissionController@index') }}" class="btn btn-danger btn-sm btn-absolute-right"><span class="glyphicon glyphicon-arrow-left"></span> {!! trans('acl::permission.edit.back') !!}</a>
 					</div>
 					<div class="panel-body">
 
-						{!! Form::open(['action' => ['\Fos\Acl\Http\Controllers\PermissionController@update', $permission->id], 'method' => 'PATCH', 'id' => 'permission-form']) !!}
+						{!! Form::open(['action' => ['\Aginev\Acl\Http\Controllers\PermissionController@update', $permission->id], 'method' => 'PATCH', 'id' => 'permission-form']) !!}
 
 						<div class="form-group">
 							<label for="controller">{!! trans('acl::permission.edit.controller'); !!}</label>

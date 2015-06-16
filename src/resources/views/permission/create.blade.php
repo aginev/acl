@@ -9,11 +9,11 @@
 
 			<div class="panel panel-default fos-acl">
 				<div class="panel-heading position-relative">{!! trans('acl::permission.create.create_new_permission'); !!}
-					<a href="{{ action('\Fos\Acl\Http\Controllers\PermissionController@index') }}" class="btn btn-danger btn-sm btn-absolute-right"><span class="glyphicon glyphicon-arrow-left"></span> {!! trans('acl::permission.create.back'); !!}</a>
+					<a href="{{ action('\Aginev\Acl\Http\Controllers\PermissionController@index') }}" class="btn btn-danger btn-sm btn-absolute-right"><span class="glyphicon glyphicon-arrow-left"></span> {!! trans('acl::permission.create.back'); !!}</a>
 				</div>
 				<div class="panel-body">
 
-					{!! Form::open(['action' => '\Fos\Acl\Http\Controllers\PermissionController@store', 'method' => 'POST', 'id' => 'role-form']) !!}
+					{!! Form::open(['action' => '\Aginev\Acl\Http\Controllers\PermissionController@store', 'method' => 'POST', 'id' => 'role-form']) !!}
 
 					<div class="form-group">
 						<label for="controller">{!! trans('acl::permission.create.controller'); !!}</label>

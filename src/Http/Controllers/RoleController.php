@@ -1,9 +1,9 @@
-<?php namespace Fos\Acl\Http\Controllers;
+<?php namespace Aginev\Acl\Http\Controllers;
 
-use Fos\Acl\Http\Models\Role;
-use Fos\Acl\Http\Models\Permission;
-use Fos\Acl\Http\Models\User;
-use Fos\Acl\Http\Requests\RoleRequest;
+use Aginev\Acl\Http\Models\Role;
+use Aginev\Acl\Http\Models\Permission;
+use Aginev\Acl\Http\Models\User;
+use Aginev\Acl\Http\Requests\RoleRequest;
 
 class RoleController extends AclController
 {
@@ -49,7 +49,7 @@ class RoleController extends AclController
         $permission_ids = $request->get('permission_id', []);
         $role->permissions()->sync($permission_ids);
 
-        return redirect()->action('\Fos\Acl\Http\Controllers\RoleController@index')
+        return redirect()->action('\Aginev\Acl\Http\Controllers\RoleController@index')
                          ->with('success', trans('acl::role.create.created'));
     }
 
@@ -101,7 +101,7 @@ class RoleController extends AclController
         $permission_ids = $request->get('permission_id', []);
         $role->permissions()->sync($permission_ids);
 
-        return redirect()->action('\Fos\Acl\Http\Controllers\RoleController@index')
+        return redirect()->action('\Aginev\Acl\Http\Controllers\RoleController@index')
                          ->with('success', trans('acl::role.edit.updated'));
     }
 
@@ -127,7 +127,7 @@ class RoleController extends AclController
         $role = Role::findOrFail($id);
         $role->delete();
 
-        return redirect()->action('\Fos\Acl\Http\Controllers\RoleController@index')
+        return redirect()->action('\Aginev\Acl\Http\Controllers\RoleController@index')
                          ->with('success', trans('acl::role.destroy.deleted'));
     }
 }

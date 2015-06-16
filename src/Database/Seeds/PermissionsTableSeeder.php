@@ -1,8 +1,8 @@
 <?php
 
-namespace Fos\Acl\Database\Seeds;
+namespace Aginev\Acl\Database\Seeds;
 
-use Fos\Acl\Commands\SetPermissions;
+use Aginev\Acl\Commands\SetPermissions;
 use Illuminate\Database\Seeder;
 use Illuminate\Foundation\Bus\DispatchesCommands;
 
