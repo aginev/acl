@@ -2,15 +2,15 @@
 
 namespace Aginev\Acl\Database\Seeds;
 
-use Aginev\Acl\Commands\SetPermissions;
+use Aginev\Acl\Jobs\SetPermissions;
 use Aginev\Acl\Http\Models\Role;
 use Illuminate\Database\Seeder;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Foundation\Bus\DispatchesCommands;
+use Illuminate\Foundation\Bus\DispatchesJobs;
 
 class RolesTableSeeder extends Seeder
 {
-    use DispatchesCommands;
+    use DispatchesJobs;
 
     public function run()
     {
