@@ -39,17 +39,7 @@ Require package at your composer.json file like so
 
 Or in terminal
 ```sh
-composer require aginev/acl
-```
-
-Because this is a private repository you need to add it at composer.json as well. Note that composer update will ask you for your password.
-```json
-"repositories": [
-	{
-		"type": "vcs",
-		"url":  "git@git.1dxr.com:laravel-5-packages/acl.git"
-	}
-]
+composer require aginev/acl:1.0.*
 ```
 
 Tell composer to update your dependencies
