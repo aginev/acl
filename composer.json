@@ -1,6 +1,7 @@
 {
     "name": "aginev/acl",
-    "description": "Datagrid package for Laravel 5",
+    "description": "ACL package for Laravel v5.0",
+    "keywords": ["ACL", "permissions and roles", "permissions", "roles", "Laravel Auth", "Laravel 5.0"],
     "homepage": "http://aginev.com",
     "license": "MIT",
     "authors": [
