@@ -191,4 +191,4 @@ php artisan vendor:publish --provider="Aginev\Acl\AclServiceProvider" --tag="see
 ```
 
 ## License
-DBAD - http://www.dbad-license.org/
+MIT - http://opensource.org/licenses/MIT
