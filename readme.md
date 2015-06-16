@@ -32,7 +32,7 @@ Require package at your composer.json file like so
 ```json
 {
     "require": {
-        "fos/acl": "1.0.*"
+        "aginev/acl": "1.0.*"
     }
 }
 ```
@@ -88,7 +88,7 @@ Add Laravel csrf token as a javascript object. Required only if use restful.js.
 
 Run package migrations. You need to have your users table migrated.
 ```sh
-php artisan migrate --path="vendor/fos/acl/src/Database/Migrations"
+php artisan migrate --path="vendor/aginev/acl/src/Database/Migrations"
 ```
 
 Seed the roles table. By default it will create two roles- No Permissions and Admin. No Permissions roles will be 
