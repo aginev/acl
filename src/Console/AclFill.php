@@ -2,18 +2,14 @@
 
 namespace Aginev\Acl\Console;
 
-use Aginev\Acl\Commands\SetPermissions;
-use Aginev\Acl\Http\Helpers\RouteList;
-use Aginev\Acl\Http\Models\Permission;
+use Aginev\Acl\Jobs\SetPermissions;
 use Illuminate\Console\Command;
-use Illuminate\Foundation\Bus\DispatchesCommands;
-use Illuminate\Support\Collection;
+use Illuminate\Foundation\Bus\DispatchesJobs;
 use Symfony\Component\Console\Input\InputOption;
-use Symfony\Component\Console\Input\InputArgument;
 
 class AclFill extends Command
 {
-    use DispatchesCommands;
+    use DispatchesJobs;
 
     /**
      * The console command name.
@@ -74,9 +70,9 @@ class AclFill extends Command
     {
         return [];
 
-        //        return [
-        //            ['example', InputArgument::OPTIONAL, 'An example argument.'],
-        //        ];
+//        return [
+//            ['example', InputArgument::OPTIONAL, 'An example argument.'],
+//        ];
     }
 
     /**

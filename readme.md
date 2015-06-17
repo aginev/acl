@@ -7,7 +7,7 @@ Access control list implementation form Laravel 5. Gives you roles and permissio
 - Route middleware for checking user permissions
 - Artisan command for parsing and adding newly created ACL dependant modules
 - Composer installable
-- PSR4 autoloading
+- PSR4 auto loading
 - PSR2 code formatting
 
 
@@ -16,13 +16,13 @@ Build only for Laravel Framework only! The package required Glyph icons (http://
 
 ```json
 "require": {
-	"php": ">=5.4.0",
-	"illuminate/foundation": "5.0.*",
-	"illuminate/contracts": "5.0.*",
-	"illuminate/database": "5.0.*",
-	"illuminate/routing": "5.0.*",
-	"illuminate/support": "5.0.*",
-	"illuminate/view": "5.0.*",
+	"php": ">=5.5.9",
+	"illuminate/foundation": "5.*",
+	"illuminate/contracts": "5.*",
+	"illuminate/database": "5.*",
+	"illuminate/routing": "5.*",
+	"illuminate/support": "5.*",
+	"illuminate/view": "5.*",
 	"illuminate/html": "5.*"
 }
 ```
@@ -32,14 +32,9 @@ Require package at your composer.json file like so
 ```json
 {
     "require": {
-        "aginev/acl": "1.0.*"
+        "aginev/acl": "1.1.*"
     }
 }
-```
-
-Or in terminal
-```sh
-composer require aginev/acl:1.0.*
 ```
 
 Tell composer to update your dependencies
@@ -47,9 +42,14 @@ Tell composer to update your dependencies
 composer update
 ```
 
+Or in terminal
+```sh
+composer require aginev/acl:1.1.*
+```
+
 Add Service Provider to your config/app.php like so
 ```php
-'Aginev\Acl\AclServiceProvider',
+Aginev\Acl\AclServiceProvider::class,
 ```
 
 Publish package assets

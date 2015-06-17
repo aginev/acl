@@ -2,13 +2,13 @@
 
 namespace Aginev\Acl\Database\Seeds;
 
-use Aginev\Acl\Commands\SetPermissions;
+use Aginev\Acl\Jobs\SetPermissions;
 use Illuminate\Database\Seeder;
-use Illuminate\Foundation\Bus\DispatchesCommands;
+use Illuminate\Foundation\Bus\DispatchesJobs;
 
 class PermissionsTableSeeder extends Seeder
 {
-    use DispatchesCommands;
+    use DispatchesJobs;
 
     public function run()
     {

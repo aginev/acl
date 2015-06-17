@@ -1,15 +1,15 @@
 <?php
 
-namespace Aginev\Acl\Commands;
+namespace Aginev\Acl\Jobs;
 
-use App\Commands\Command;
+use App\Jobs\Job;
 use Aginev\Acl\Http\Helpers\RouteList;
 use Aginev\Acl\Http\Models\Permission;
 use Aginev\Acl\Http\Models\Role;
 use Illuminate\Contracts\Bus\SelfHandling;
 use Illuminate\Support\Collection;
 
-class SetPermissions extends Command implements SelfHandling
+class SetPermissions extends Job implements SelfHandling
 {
 
     /**
@@ -79,7 +79,7 @@ class SetPermissions extends Command implements SelfHandling
         $roles = Role::whereIn('id', $this->role_ids)->get();
 
         if ($roles && $permissions) {
-            $permission_ids = $permissions->lists('id');
+            $permission_ids = $permissions->lists('id')->all();
 
             foreach ($roles as $role) {
                 $role->permissions()->attach($permission_ids);
