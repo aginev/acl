@@ -13,7 +13,7 @@ class AddRoleToUsersTable extends Migration
     public function up()
     {
         Schema::table('users', function ($table) {
-            $table->integer('role_id')->unsigned()->nullable();
+            $table->integer('role_id')->unsigned()->nullable()->after('id');
             $table->foreign('role_id')->references('id')->on('roles')->onDelete('set null')->onUpdate('cascade');
         });
     }
