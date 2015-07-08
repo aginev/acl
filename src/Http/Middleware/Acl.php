@@ -4,9 +4,8 @@ use Closure;
 use Aginev\Acl\Http\Models\Permission;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Contracts\Routing\Middleware;
 
-class Acl implements Middleware
+class Acl
 {
     /**
      * Handle an incoming request.
