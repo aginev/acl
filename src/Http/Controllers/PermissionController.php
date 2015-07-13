@@ -137,7 +137,7 @@ class PermissionController extends AclController
      *
      * @return array
      */
-    private function getValidationRules()
+    protected function getValidationRules()
     {
         return [
             'controller' => 'required',
@@ -151,7 +151,7 @@ class PermissionController extends AclController
      *
      * @return int|null
      */
-    private function getPermissionId()
+    protected function getPermissionId()
     {
         try {
             return (int)Route::current()->parameters()['permission'];
